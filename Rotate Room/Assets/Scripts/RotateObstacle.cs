@@ -22,7 +22,7 @@ public class RotateObstacle : MonoBehaviour
             oldDegree = cam.transform.eulerAngles.z;
             platforms.ForEach(platform =>
             {
-                platform.rotationalOffset = -oldDegree;
+                platform.rotationalOffset = oldDegree - platform.transform.eulerAngles.z;
             });
         }
     }

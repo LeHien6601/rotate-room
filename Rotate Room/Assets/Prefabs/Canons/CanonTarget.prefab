@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5933752849512712510}
   m_Layer: 6
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Canon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4649315930028317816}
   m_Layer: 6
   m_Name: CanonTarget
-  m_TagString: Untagged
+  m_TagString: Canon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   canonBallPrefab: {fileID: 4062670365590635148, guid: fc70fe89ecc2cfd4898421f2ac7f9c8b, type: 3}
   firePoint: {x: 1, y: 0}
   particle: {fileID: 6657789209008001472}
+  delayTime: 0
 --- !u!199 &6762468725308336067
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5099,7 +5100,7 @@ GameObject:
   - component: {fileID: 5981910242757061158}
   m_Layer: 6
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Canon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

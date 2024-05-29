@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 7079300306592016653}
   - component: {fileID: 1114419012222156788}
   - component: {fileID: 1453156679543314861}
-  - component: {fileID: 1784758641448262274}
   m_Layer: 6
-  m_Name: FadedBlock
+  m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.13197902, b: 0.509434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,20 +158,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1784758641448262274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4509296223839239690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb55b4daccbe6dd4abe2e80929f20a00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTime: 1
-  duration: 2
-  rb: {fileID: 1114419012222156788}
-  coll: {fileID: 1453156679543314861}
-  sprite: {fileID: 7079300306592016653}

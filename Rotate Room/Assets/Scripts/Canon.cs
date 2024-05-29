@@ -10,11 +10,12 @@ public class Canon : MonoBehaviour
     [SerializeField] private GameObject canonBallPrefab;
     [SerializeField] private Vector2 firePoint;
     [SerializeField] private ParticleSystem particle;
+    [SerializeField] private float delayTime;
     private float timer = 0f;
     private Vector2 firePosition;
     private void Start()
     {
-        timer = duration;
+        timer = duration + delayTime;
     }
     private void Update()
     {

@@ -36,7 +36,6 @@ public class FadedBlock : MonoBehaviour
     {
         if (isCollapsed)
         {
-            Debug.Log(0);
             Shake();
             lifeTimer -= Time.deltaTime;
             if (lifeTimer <= 0)
@@ -47,7 +46,6 @@ public class FadedBlock : MonoBehaviour
         }
         else if (isFaded)
         {
-            Debug.Log(1);
             sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a / 1.1f);
             timer -= Time.deltaTime;
             if (timer <= 0)
@@ -58,13 +56,8 @@ public class FadedBlock : MonoBehaviour
         }
         else if (initialAlpha > sprite.color.a)
         {
-            Debug.Log(2);
             float newAlpha = Mathf.Min(sprite.color.a + 10, initialAlpha);
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-        }
-        else
-        {
-            Debug.Log(3);
         }
     }
     //Shaking effect when collapsing
