@@ -19,9 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isDead = false;
     private bool onGround = false;
     private float offGroundTimer = 0f;
+    private Color initialColor;
     private void Start()
     {
         particle.Stop();
+        initialColor = sprite.color;
     }
 
     private void Update()
@@ -51,10 +53,16 @@ public class PlayerMovement : MonoBehaviour
         {
             if (particle.isStopped) //Reload scence after stopping particle system duration
             {
-                Destroy(gameObject);
                 //End game!!!!!!!
-                //if (SceneManager.GetActiveScene().name == "MainMenu")
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                if (SceneManager.GetActiveScene().name == "MainMenu")
+                {
+                    sprite.color = initialColor;
+                    isDead = false;
+                    rb.bodyType = RigidbodyType2D.Dynamic;
+                    return;
+                }
+                GameManager.instance.SetLoseState();
+                GameManager.instance.ShowRestartMenu();
             }
             //Faded player
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a / 2);
