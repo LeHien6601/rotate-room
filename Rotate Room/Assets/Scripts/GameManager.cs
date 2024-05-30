@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseIcon;
     [SerializeField] private GameObject resumeIcon;
     [SerializeField] private TextMeshProUGUI levelText;
-    [SerializeField] private int maxLevel = 3;
+    [SerializeField] public int maxLevel = 3;
     [SerializeField] private LevelHandler levelHandler;
     private void Start()
     {
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     public void SetWinState()
     {
         levelState = LevelState.WIN;
-        levelHandler.UnlockLevel(currentLevel + 1);
+        levelHandler.UnlockLevel((currentLevel + 1) % (maxLevel + 1));
     }
     public void SetLoseState()
     {
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadLevel(int i)
     {
+        Debug.Log("Access level " + i);
         currentLevel = i;
         if (currentLevel == 0)
         {
