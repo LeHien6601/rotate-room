@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb55b4daccbe6dd4abe2e80929f20a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 3
+  lifeTime: 2
   duration: 3
   rb: {fileID: 7253362354703216189}
   coll: {fileID: 5497309600800531522}

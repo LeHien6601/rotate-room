@@ -9,7 +9,7 @@ public class Spike : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision == null) return;
-        if (collision.gameObject.tag == "Player" && collision.rigidbody.bodyType == RigidbodyType2D.Dynamic)
+        if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerMovement>().Dead();
         }

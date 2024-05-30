@@ -13,7 +13,7 @@ public class BlackGate : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision == null) return;
-        if (collision.tag != "Player") return;
+        //if (collision.tag != "Player") return;
         Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
         initialVelocity = rb.velocity;
         initialAlpha = collision.GetComponent<SpriteRenderer>().color.a;
@@ -22,16 +22,18 @@ public class BlackGate : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision == null) return;
-        if (collision.tag != "Player") return;
+        //if (collision.tag != "Player") return;
         Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
         SpriteRenderer sprite = collision.GetComponent<SpriteRenderer>();
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        if (collision.tag == "Player")
+            rb.bodyType = RigidbodyType2D.Kinematic;
         Vector3 direction = transform.position - collision.transform.position;
         if (direction.magnitude < circleCollider.radius / 4)
         {
             collision.transform.position = whiteGate.position;
             //Teleports to white gate!!!!!!
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            //if (collision.tag == "Player")
+                rb.bodyType = RigidbodyType2D.Dynamic;
             float angle = Vector2.SignedAngle(transform.right, whiteGate.right) * Mathf.Deg2Rad;
             rb.velocity = new Vector2(initialVelocity.x * Mathf.Cos(angle) - initialVelocity.y * Mathf.Sin(angle),
                                       initialVelocity.x * Mathf.Sin(angle) + initialVelocity.y * Mathf.Cos(angle));

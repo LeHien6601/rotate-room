@@ -87,7 +87,6 @@ public class FadedBlock : MonoBehaviour
     //Collapsed trigger
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("shake");
         if (collision == null) return;
         if (isCollapsed) return;
         isCollapsed = true;

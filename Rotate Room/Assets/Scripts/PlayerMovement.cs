@@ -53,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 Destroy(gameObject);
                 //End game!!!!!!!
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                //if (SceneManager.GetActiveScene().name == "MainMenu")
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             //Faded player
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a / 2);
