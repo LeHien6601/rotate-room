@@ -11,10 +11,10 @@ public class Platform : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision == null) return;
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" )
         {
             coll.isTrigger = false;
-            collision.gameObject.transform.parent = null;
+            collision.gameObject.transform.SetParent(null);
         }
     }
 
@@ -24,7 +24,7 @@ public class Platform : MonoBehaviour
         if (collision == null) return;
         if (collision.collider.tag == "Player")
         {
-            collision.gameObject.transform.parent = null;
+            collision.gameObject.transform.SetParent(null);
         }
     }
 }

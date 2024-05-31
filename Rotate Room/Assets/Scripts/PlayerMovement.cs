@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         }
         //Check if player on ground or not -> Be able to jump
         if (!OnGround() && offGroundTimer <= 0) return;
-        if (Input.GetKeyDown(KeyCode.W) && jumpCount > 0)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCount > 0)
         {
             jumpTrigger = true;
         }
@@ -81,14 +81,19 @@ public class PlayerMovement : MonoBehaviour
         if (rb.bodyType != RigidbodyType2D.Dynamic) return;
 
         //Check if player on platform or not
-        Collider2D platform = OnPlatform();
-        if (platform != null && !platform.isTrigger)
+        GameObject platform = OnPlatform();
+        if (platform != null)
         {
-            //Player sticks with platform -> Be child of platform
-            gameObject.transform.SetParent(platform.transform);
-            if (Input.GetKeyDown(KeyCode.S))    //Player off platform
+            if (!platform.GetComponent<BoxCollider2D>().isTrigger)
             {
-                platform.isTrigger = true;
+                //Player sticks with platform -> Be child of platform
+                transform.SetParent(platform.transform);
+                if (Input.GetKey(KeyCode.S))    //Player off platform
+                {
+                    platform.GetComponent<BoxCollider2D>().isTrigger = true;
+                    transform.SetParent(null);
+                    transform.position += (Vector3)(directions[2] * 0.5f);
+                }
             }
         }
         else
@@ -115,11 +120,11 @@ public class PlayerMovement : MonoBehaviour
 
         //Player moves Left/Right
         if (rb.bodyType != RigidbodyType2D.Dynamic) return;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += (Vector3) directions[3] * speed * Time.fixedDeltaTime;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += (Vector3) directions[1] * speed * Time.fixedDeltaTime;
         }
@@ -157,14 +162,17 @@ public class PlayerMovement : MonoBehaviour
         isDead = true;
     }
     //Returns platform player stands on
-    private Collider2D OnPlatform()
+    private GameObject OnPlatform()
     {
+        if (transform.parent != null && transform.parent.tag == "Platform") return transform.parent.gameObject;
         RaycastHit2D hit = Physics2D.BoxCast((Vector2)transform.position + directions[2] * 0.5f, new Vector2(1f, 0.1f),
                                               Vector2.SignedAngle(Vector2.left, directions[1]), directions[2], 0f, LayerMask.GetMask("Obstacle"));
         if (hit.collider == null) return null;
         if (hit.collider.tag == "Platform")
         {
-            return hit.collider;
+            float diff = Mathf.Abs(hit.transform.eulerAngles.z - transform.eulerAngles.z);
+            if (diff == 0 || diff == 180)
+                return hit.collider.gameObject;
         }
         return null;
     }

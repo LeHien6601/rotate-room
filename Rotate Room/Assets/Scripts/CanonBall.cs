@@ -25,6 +25,10 @@ public class CanonBall : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a / 1.1f);
         }
+        else if (rb.velocity.magnitude < 0.05f) {
+            isExploded = true;
+            particle.Play();
+        }
     }
     //Hits and explodes
     private void OnCollisionEnter2D(Collision2D collision)
