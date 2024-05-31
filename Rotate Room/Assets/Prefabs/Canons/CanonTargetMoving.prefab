@@ -5103,7 +5103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec9923f23e24a2643836dbd75ff6a043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleCollider: {fileID: 4880634789318638465, guid: 4b79077bab42dc5479965b57c38329e8, type: 3}
+  circleCollider: {fileID: 2913034856411164178}
 --- !u!1 &5895516871207077100
 GameObject:
   m_ObjectHideFlags: 0
