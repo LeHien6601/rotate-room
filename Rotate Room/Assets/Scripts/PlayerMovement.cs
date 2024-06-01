@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class PlayerMovement : MonoBehaviour
     private bool onGround = false;
     private float offGroundTimer = 0f;
     private Color initialColor;
+
+    private bool DashAbility = true;
+    private bool isDashing;
+    private float DashPower = 20f;
+    private float DashTime = 0.3f;
+    private float DashCoolDown = 1f;
+
+    [SerializeField] private TrailRenderer tr;
     private void Start()
     {
         particle.Stop();
@@ -28,6 +37,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
         //Stable camera's state -> Ready for new rotation
         if (camFollow.timer == 0)   
         {
@@ -73,10 +86,19 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpTrigger = true;
         }
+
+        if(Input.GetKeyDown(KeyCode.LeftShift) && DashAbility)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     private void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
 
         if (rb.bodyType != RigidbodyType2D.Dynamic) return;
 
@@ -191,5 +213,21 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity /= 2;
             transform.position += Vector3.ClampMagnitude(direction, attraction);
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        DashAbility = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * DashPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(DashTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(DashCoolDown);
+        DashAbility = true;
     }
 }
