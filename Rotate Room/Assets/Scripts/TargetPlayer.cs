@@ -29,7 +29,7 @@ public class TargetPlayer : MonoBehaviour
         if (!hasPlayer) return;
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].collider.tag != "Player" && hit[i].collider.tag != "Canon")
+            if (hit[i].collider.tag != "Player" && hit[i].collider.tag != "Canon" && hit[i].collider.tag != "Untagged")
             {
                 if (playerDistance > hit[i].distance)
                 {

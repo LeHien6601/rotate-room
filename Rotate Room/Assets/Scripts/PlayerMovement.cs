@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         //Dead trigger
         if (isDead)
         {
+            transform.SetParent(null);
             if (particle.isStopped) //Reload scence after stopping particle system duration
             {
                 //End game!!!!!!!
@@ -82,12 +83,10 @@ public class PlayerMovement : MonoBehaviour
 
         //Check if player on platform or not
         GameObject platform = OnPlatform();
-        if (platform != null)
+        if (platform != null && transform.parent != null && transform.parent.tag == "Platform")
         {
             if (!platform.GetComponent<BoxCollider2D>().isTrigger)
             {
-                //Player sticks with platform -> Be child of platform
-                transform.SetParent(platform.transform);
                 if (Input.GetKey(KeyCode.S))    //Player off platform
                 {
                     platform.GetComponent<BoxCollider2D>().isTrigger = true;

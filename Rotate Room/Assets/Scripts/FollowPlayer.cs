@@ -124,6 +124,15 @@ public class FollowPlayer : MonoBehaviour
         }
         targetDegree = Mathf.RoundToInt(targetDegree / 90) * 90;
     }
+    public void SetLimits(float top, float right, float bottom, float left)
+    {
+        limits[0] = top; limits[1] = right;
+        limits[2] = bottom; limits[3] = left;
+    }
+    public Vector4 GetLimits()
+    {
+        return new Vector4(limits[0], limits[1], limits[2], limits[3]);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
         if (currentLevel == 0) return;
         levelText.text = currentLevel.ToString();
     }
+    public LevelState GetLevelState()
+    {
+        return levelState;
+    }
     public void SetPauseState()
     {
         levelState = LevelState.PAUSE;
