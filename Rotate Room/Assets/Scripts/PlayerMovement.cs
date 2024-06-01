@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private float jumpStrength = 2f;
     [SerializeField] private float gravityScale = 5f;
-    public List<Vector2> directions = new List<Vector2>() { Vector2.up, Vector2.right, Vector2.down, Vector2.left};
+    public List<Vector2> directions = new List<Vector2>() { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
     private int jumpCount = 0;
     private bool jumpTrigger = false;
     [SerializeField] private Rigidbody2D rb;
@@ -21,14 +21,10 @@ public class PlayerMovement : MonoBehaviour
     private bool onGround = false;
     private float offGroundTimer = 0f;
     private Color initialColor;
+    //private float speedBoost = 10f;
+    //private bool isSpeedBoost = false;
 
-    private bool DashAbility = true;
-    private bool isDashing;
-    private float DashPower = 20f;
-    private float DashTime = 0.3f;
-    private float DashCoolDown = 1f;
 
-    [SerializeField] private TrailRenderer tr;
     private void Start()
     {
         particle.Stop();
@@ -37,12 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isDashing)
-        {
-            return;
-        }
         //Stable camera's state -> Ready for new rotation
-        if (camFollow.timer == 0)   
+        if (camFollow.timer == 0)
         {
             if (Input.GetKeyDown(KeyCode.E))    //Rotate clockwise
             {
@@ -75,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
                     rb.bodyType = RigidbodyType2D.Dynamic;
                     return;
                 }
+                isDead = false;
                 GameManager.instance.SetLoseState();
                 GameManager.instance.ShowRestartMenu();
             }
@@ -88,18 +81,56 @@ public class PlayerMovement : MonoBehaviour
             jumpTrigger = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && DashAbility)
-        {
-            StartCoroutine(Dash());
-        }
+
+
+       
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+            //float speedDash = speed;
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+                //speedDash *= speedBoost;
+                //isSpeedBoost = true;
+           //}
+            //else
+            //{
+                //isSpeedBoost = false;
+            //}
+            //rb.velocity = new Vector2(-speedDash, 0f);
+        //}
+        //else if (isSpeedBoost)
+        //{
+            //rb.velocity = new Vector2(0f, 0f);
+            //isSpeedBoost = false;
+        //}
+   
+
+        
+
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+            //float speedDash = speed;
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+                //speedDash *= speedBoost;
+                //isSpeedBoost = true;
+            //}
+            //else
+            //{
+                //isSpeedBoost = false;
+            //}
+            //rb.velocity = new Vector2(speedDash, 0f);
+        //}
+        //else if (isSpeedBoost)
+        //{
+            //rb.velocity = new Vector2(0f, 0f);
+            //isSpeedBoost = false;
+        //}
+
     }
 
     private void FixedUpdate()
-    {
-        if (isDashing)
-        {
-            return;
-        }
+    { 
 
         if (rb.bodyType != RigidbodyType2D.Dynamic) return;
 
@@ -149,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position += (Vector3) directions[1] * speed * Time.fixedDeltaTime;
         }
+
     }
     //Checks player on ground or not
     private bool OnGround()
@@ -214,19 +246,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator Dash()
-    {
-        DashAbility = false;
-        isDashing = true;
-        float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * DashPower, 0f);
-        tr.emitting = true;
-        yield return new WaitForSeconds(DashTime);
-        tr.emitting = false;
-        rb.gravityScale = originalGravity;
-        isDashing = false;
-        yield return new WaitForSeconds(DashCoolDown);
-        DashAbility = true;
-    }
 }

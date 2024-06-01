@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     public void ReloadCurrentLevel()
     {
         LoadLevel(currentLevel);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void LoadNextLevel()
     {

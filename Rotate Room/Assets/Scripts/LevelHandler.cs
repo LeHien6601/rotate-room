@@ -21,7 +21,6 @@ public class LevelHandler : MonoBehaviour
             levels[i].interactable = (i < currentUnlockedLevel);
             int j = i;
             levels[i].onClick.AddListener(() => { GameManager.instance.LoadLevel(j + 1); });
-            Debug.Log(i +1);
             levels[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i + 1).ToString();
         }
     }

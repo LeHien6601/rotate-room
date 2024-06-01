@@ -24,7 +24,6 @@ public class ShowroomHandler : MonoBehaviour
         if (boxCollider.offset.y - boxCollider.size.y / 2f <= collision.transform.position.y
           && boxCollider.offset.y + boxCollider.size.y / 2f >= collision.transform.position.y)
         {
-            Debug.Log("Player still in zone " + collision.transform.position + " in [" + (boxCollider.offset.y - boxCollider.size.y / 2f) + ", " + (boxCollider.offset.y + boxCollider.size.y / 2f) + "]");
             return;
         }
         if (gameManager != null) gameManager.SetActive(true);

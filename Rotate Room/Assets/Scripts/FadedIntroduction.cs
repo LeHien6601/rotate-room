@@ -5,9 +5,9 @@ using UnityEngine;
 public class FadedIntroduction : MonoBehaviour
 {
     [SerializeField] private GameObject introduction;
-    [SerializeField] private Collider2D collider;
+    [SerializeField] private Collider2D coll;
     private void Update()
     {
-        introduction.SetActive(collider.enabled);
+        introduction.SetActive(coll.enabled);
     }
 }
