@@ -1358,6 +1358,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformFading
       objectReference: {fileID: 0}
+    - target: {fileID: 3933611646047962745, guid: eca70f89d0416464b9601a816ba92675, type: 3}
+      propertyPath: m_RotationalOffset
+      value: -90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2539,6 +2543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 836411292}
+  - component: {fileID: 836411293}
   m_Layer: 6
   m_Name: Platforms
   m_TagString: Untagged
@@ -2570,6 +2575,19 @@ Transform:
   - {fileID: 1553556629}
   m_Father: {fileID: 749512647}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &836411293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836411291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4af3961f2cfd9443ae1e7ec9bb60c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 519420031}
 --- !u!1001 &850578375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2578,6 +2596,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 836411292}
     m_Modifications:
+    - target: {fileID: 1655407220335735269, guid: b3166135c469ad54f94c961c5b56d188, type: 3}
+      propertyPath: m_RotationalOffset
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3139831199865087278, guid: b3166135c469ad54f94c961c5b56d188, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.20000002
@@ -3120,8 +3142,8 @@ Transform:
   m_GameObject: {fileID: 1164020589}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.6097, y: -0.6403, z: 0}
-  m_LocalScale: {x: 22.905327, y: 2.5004, z: 1}
+  m_LocalPosition: {x: -12.8271, y: -0.6403, z: 0}
+  m_LocalScale: {x: 22.470125, y: 2.5004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 469732642}
@@ -6112,6 +6134,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 836411292}
     m_Modifications:
+    - target: {fileID: 1655407220335735269, guid: b3166135c469ad54f94c961c5b56d188, type: 3}
+      propertyPath: m_RotationalOffset
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3139831199865087278, guid: b3166135c469ad54f94c961c5b56d188, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.20000002

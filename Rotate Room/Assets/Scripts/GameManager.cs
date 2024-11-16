@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int i)
     {
         Debug.Log("Access level " + i);
+        Time.timeScale = 1f;
         currentLevel = i;
         if (currentLevel == 0)
         {
