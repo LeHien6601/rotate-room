@@ -8,6 +8,7 @@ TagManager:
   - Platform
   - Canon
   - Level
+  - UIPlayer
   layers:
   - Default
   - TransparentFX
